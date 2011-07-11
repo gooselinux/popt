@@ -1,7 +1,7 @@
 # This makefile is downloading any file found in 
 # the 'sources' file already existing in this directory
 # and validating the sha256sum of the archive against it.
-NAME := bash
+NAME := popt
 
 define find-common-dir
 for d in common ../common ../../common ; do if [ -f $$d/Makefile.common ] ; then echo "$$d"; break ; fi ; done
@@ -15,7 +15,7 @@ SOURCEFILES := $(shell cat sources 2>/dev/null | awk '{ print $$2 }' | awk -F'*'
 sources: $(SOURCEFILES)
 
 $(SOURCEFILES):
-	@for sourcefile in $(SOURCEFILES); do \
+	for sourcefile in $(SOURCEFILES); do \
 	    $(CLIENT) $(LOOKASIDE_URI)/$(NAME)/$${sourcefile}; \
 	done
 
